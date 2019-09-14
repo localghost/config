@@ -1,4 +1,8 @@
 function fish_prompt
-  echo (date '+%H:%M:%S') (id -un)@(hostname):(pwd)
-  echo '> '
+  if set -q VIRTUAL_ENV
+    set_color ffa500
+    echo -n "("(basename $VIRTUAL_ENV)") "
+    set_color normal
+  end
+  echo (id -un)@(hostname):(set_color blue)(prompt_pwd)(set_color normal) '> ' 
 end
